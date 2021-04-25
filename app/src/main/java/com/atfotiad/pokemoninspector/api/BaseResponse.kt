@@ -1,4 +1,6 @@
-package com.atfotiad.pokemoninspector.model
+package com.atfotiad.pokemoninspector.api
+
+import com.atfotiad.pokemoninspector.model.Result
 
 data class BaseResponse(
     val count: Int,

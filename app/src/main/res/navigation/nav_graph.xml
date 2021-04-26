@@ -10,4 +10,9 @@
         android:name="com.atfotiad.pokemoninspector.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/pokeDexFragment"
+        android:name="com.atfotiad.pokemoninspector.ui.pokedex.PokeDexFragment"
+        android:label="fragment_poke_dex"
+        tools:layout="@layout/fragment_poke_dex" />
 </navigation>

@@ -3,4 +3,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="my_pokemon_squad">MY POKEMON SQUAD</string>
+    <string name="pokeDex">PokeDex</string>
 </resources>

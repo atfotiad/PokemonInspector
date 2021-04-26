@@ -4,4 +4,7 @@
         android:title="@string/home"
         android:icon="@drawable/ic_baseline_home_24"/>
 
+    <item android:id="@+id/pokeDexFragment"
+        android:title="@string/pokeDex"
+        android:icon="@drawable/pokedex_24" />
 </menu>

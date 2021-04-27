@@ -8,43 +8,42 @@ import androidx.recyclerview.widget.RecyclerView
 import com.atfotiad.pokemoninspector.databinding.ItemPokeCardBinding
 import com.atfotiad.pokemoninspector.model.Result
 
-class PokeDexAdapter(private val items: List<Result>) : PagingDataAdapter<Result,PokeDexAdapter.MyViewHolder>(
-    POKEMON_COMPARATOR) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(
-            ItemPokeCardBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+class PokeDexAdapter :
+    PagingDataAdapter<Result, PokeDexAdapter.PokeViewHolder>(POKEMON_COMPARATOR) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokeViewHolder {
+        val binding =
+            ItemPokeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PokeViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindView(items[position])
-
-    }
-
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
-    class MyViewHolder(private val rowBinding: ItemPokeCardBinding) : RecyclerView.ViewHolder(
-        rowBinding.root
-    ) {
-        fun bindView(item: Result) {
-            rowBinding.apply {
-                name.text = item.name
-            }
+    override fun onBindViewHolder(holder: PokeViewHolder, position: Int) {
+        val currentPokemon = getItem(position)
+        if (currentPokemon != null) {
+            holder.bind(currentPokemon)
         }
     }
-    companion object{
-        private val POKEMON_COMPARATOR = object :DiffUtil.ItemCallback<Result>(){
-            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
+
+    class PokeViewHolder(private val binding: ItemPokeCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(pokemon: Result) {
+            binding.apply {
+                name.text = pokemon.name
+            }
+        }
+
+    }
+
+    companion object {
+        private val POKEMON_COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
+            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
                 oldItem.name == newItem.name
 
-            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
+            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
                 oldItem == newItem
         }
     }
+
 }
+
+
